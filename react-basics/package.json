@@ -1,0 +1,17 @@
+{
+  "name": "mern-batch-17",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Venkat",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  }
+}

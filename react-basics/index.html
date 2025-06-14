@@ -11,8 +11,13 @@
     <p id="para">Step 2</p>
   </div>
 
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!--Via CDN Links-->
+  <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+
+  <!--Via Local Storage-->
+  <script type="module" src="./react.development.js"></script>
+  <script type="module" src="./react-dom.development.js"></script>
 
   <script>
     // Getter Methods
@@ -44,11 +49,6 @@
         React.createElement("h1", null, "Heading Element 1")
       ])
     ])
-
-    
-
-
-
 
   </script>
 

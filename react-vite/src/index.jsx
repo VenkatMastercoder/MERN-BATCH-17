@@ -1,6 +1,7 @@
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import "flowbite";
+import { v4 as uuidv4 } from 'uuid';
 
 const paragraphElement = <p className="test">Hello Vite React</p>;
 
@@ -125,15 +126,15 @@ const Header = () => {
 const HeroSection = () => {
   return (
     <>
-      <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <div className="mx-auto grid max-w-screen-xl px-4 pb-8 md:grid-cols-12 lg:gap-12 lg:pb-16 xl:gap-0">
-          <div className="content-center justify-self-start md:col-span-7 md:text-start">
-            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight dark:text-white md:max-w-2xl md:text-5xl xl:text-6xl">
+      <section className="py-8 antialiased bg-white dark:bg-gray-900 md:py-16">
+        <div className="grid px-4 pb-8 mx-auto max-w-screen-xl md:grid-cols-12 lg:gap-12 lg:pb-16 xl:gap-0">
+          <div className="justify-self-start content-center md:col-span-7 md:text-start">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none dark:text-white md:max-w-2xl md:text-5xl xl:text-6xl">
               Limited Time Offer!
               <br />
               Up to 50% OFF!
             </h1>
-            <p className="mb-4 max-w-2xl text-gray-500 dark:text-gray-400 md:mb-12 md:text-lg mb-3 lg:mb-5 lg:text-xl">
+            <p className="mb-3 mb-4 max-w-2xl text-gray-500 dark:text-gray-400 md:mb-12 md:text-lg lg:mb-5 lg:text-xl">
               Don't Wait - Limited Stock at Unbeatable Prices!
             </p>
             <a
@@ -155,7 +156,7 @@ const HeroSection = () => {
             />
           </div>
         </div>
-        <div className="mx-auto grid max-w-screen-xl grid-cols-2 gap-8 text-gray-500 dark:text-gray-400 sm:grid-cols-3 sm:gap-12 lg:grid-cols-6 px-4">
+        <div className="grid grid-cols-2 gap-8 px-4 mx-auto max-w-screen-xl text-gray-500 dark:text-gray-400 sm:grid-cols-3 sm:gap-12 lg:grid-cols-6">
           <a href="#" className="flex items-center md:justify-center">
             <svg
               className="h-10 hover:text-gray-900 dark:hover:text-white"
@@ -280,156 +281,221 @@ const HeroSection = () => {
   );
 };
 
+const ProductCard = ({ title, price, offer }) => {
+  // console.log(props);
+
+  // console.log("Dot Noation:", props.title, props.price, props.offer);
+  // console.log(
+  //   "Bracket Noation:",
+  //   props["title"],
+  //   props["price"],
+  //   props["offer"]
+  // );
+
+  return (
+    <>
+      <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="w-full h-56">
+          <a href="#">
+            <img
+              className="mx-auto h-full dark:hidden"
+              src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+              alt=""
+            />
+            <img
+              className="hidden mx-auto h-full dark:block"
+              src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+              alt=""
+            />
+          </a>
+        </div>
+        <div className="pt-6">
+          <div className="flex gap-4 justify-between items-center mb-4">
+            <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+              {" "}
+              {/* Up to {props.offer}% off{" "} */}
+              Up to {offer}% off{" "}
+            </span>
+          </div>
+          <a
+            href="#"
+            className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
+            {/* {props.title} */}
+            {title}
+          </a>
+          <div className="flex gap-2 items-center mt-2">
+            <div className="flex items-center">
+              <svg
+                className="w-4 h-4 text-yellow-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+              <svg
+                className="w-4 h-4 text-yellow-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+              <svg
+                className="w-4 h-4 text-yellow-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+              <svg
+                className="w-4 h-4 text-yellow-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+              <svg
+                className="w-4 h-4 text-yellow-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+              </svg>
+            </div>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">
+              5.0
+            </p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              (455)
+            </p>
+          </div>
+          <ul className="flex gap-4 items-center mt-2">
+            <li className="flex gap-2 items-center">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                />
+              </svg>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Fast Delivery
+              </p>
+            </li>
+            <li className="flex gap-2 items-center">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth={2}
+                  d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                />
+              </svg>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Best Price
+              </p>
+            </li>
+          </ul>
+          <div className="flex gap-4 justify-between items-center mt-4">
+            <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
+              {/* ${props["price"]} */}${price}
+            </p>
+            <button
+              type="button"
+              className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+              <svg
+                className="w-5 h-5 -ms-2 me-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                />
+              </svg>
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+// Backend we send this Array of Object [Upcoming Class]
+const productData = [
+  {
+    id: 1,
+    title: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
+    price: 2000,
+    offer: 20,
+  },
+  {
+    id: 2,
+
+    title: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
+    price: 3000,
+    offer: 20,
+  },
+  {
+    id: 3,
+
+    title: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
+    price: 2000,
+    offer: 20,
+  },
+  {
+    id: 4,
+    title: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
+    price: 3000,
+    offer: 20,
+  },
+  {
+    id: 5,
+    title: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
+    price: 2000,
+    offer: 20,
+  },
+];
+
 const ProductLayout = () => {
   return (
     <>
-      <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
-        <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-              <div className="h-56 w-full">
-                <a href="#">
-                  <img
-                    className="mx-auto h-full dark:hidden"
-                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                    alt=""
-                  />
-                  <img
-                    className="mx-auto hidden h-full dark:block"
-                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="pt-6">
-                <div className="mb-4 flex items-center justify-between gap-4">
-                  <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    {" "}
-                    Up to 35% off{" "}
-                  </span>
-                </div>
-                <a
-                  href="#"
-                  className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
-                  Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
-                </a>
-                <div className="mt-2 flex items-center gap-2">
-                  <div className="flex items-center">
-                    <svg
-                      className="h-4 w-4 text-yellow-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                    </svg>
-                    <svg
-                      className="h-4 w-4 text-yellow-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                    </svg>
-                    <svg
-                      className="h-4 w-4 text-yellow-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                    </svg>
-                    <svg
-                      className="h-4 w-4 text-yellow-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                    </svg>
-                    <svg
-                      className="h-4 w-4 text-yellow-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
-                    5.0
-                  </p>
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    (455)
-                  </p>
-                </div>
-                <ul className="mt-2 flex items-center gap-4">
-                  <li className="flex items-center gap-2">
-                    <svg
-                      className="h-4 w-4 text-gray-500 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
-                      />
-                    </svg>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Fast Delivery
-                    </p>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg
-                      className="h-4 w-4 text-gray-500 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeWidth={2}
-                        d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
-                      />
-                    </svg>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Best Price
-                    </p>
-                  </li>
-                </ul>
-                <div className="mt-4 flex items-center justify-between gap-4">
-                  <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
-                    $1,699
-                  </p>
-                  <button
-                    type="button"
-                    className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    <svg
-                      className="-ms-2 me-2 h-5 w-5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      fill="none"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                      />
-                    </svg>
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
+      <section className="py-8 antialiased bg-gray-50 dark:bg-gray-900 md:py-12">
+        <div className="px-4 mx-auto max-w-screen-xl 2xl:px-0">
+          <div className="grid gap-4 mb-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+            {productData.map((items, index) => {
+              return (
+                <ProductCard
+                  key={uuidv4()}
+                  title={items.title}
+                  price={items.price}
+                  offer={items.offer}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -587,7 +653,7 @@ const Footer = () => {
           </p>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6 ">
+              <a href="#" className="mr-4 hover:underline md:mr-6">
                 About
               </a>
             </li>
@@ -597,7 +663,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6 ">
+              <a href="#" className="mr-4 hover:underline md:mr-6">
                 Campaigns
               </a>
             </li>
@@ -638,10 +704,10 @@ const Footer = () => {
 const DemoComponent = () => {
   return (
     <>
-      <div className="2xl:container mx-auto">
+      <div className="mx-auto 2xl:container">
         <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <div className="h-56 w-full">
+          <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="w-full h-56">
               <a href="#">
                 <img
                   className="mx-auto h-full dark:hidden"
@@ -649,14 +715,14 @@ const DemoComponent = () => {
                   alt=""
                 />
                 <img
-                  className="mx-auto hidden h-full dark:block"
+                  className="hidden mx-auto h-full dark:block"
                   src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
                   alt=""
                 />
               </a>
             </div>
             <div className="pt-6">
-              <div className="mb-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mb-4">
                 <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                   {" "}
                   Up to 35% off{" "}
@@ -667,10 +733,10 @@ const DemoComponent = () => {
                 className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
                 Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
               </a>
-              <div className="mt-2 flex items-center gap-2">
+              <div className="flex gap-2 items-center mt-2">
                 <div className="flex items-center">
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -678,7 +744,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -686,7 +752,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -694,7 +760,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -702,7 +768,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -717,10 +783,10 @@ const DemoComponent = () => {
                   (455)
                 </p>
               </div>
-              <ul className="mt-2 flex items-center gap-4">
-                <li className="flex items-center gap-2">
+              <ul className="flex gap-4 items-center mt-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -737,9 +803,9 @@ const DemoComponent = () => {
                     Fast Delivery
                   </p>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -756,7 +822,7 @@ const DemoComponent = () => {
                   </p>
                 </li>
               </ul>
-              <div className="mt-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mt-4">
                 <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
                   $1,699
                 </p>
@@ -764,7 +830,7 @@ const DemoComponent = () => {
                   type="button"
                   className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                   <svg
-                    className="-ms-2 me-2 h-5 w-5"
+                    className="w-5 h-5 -ms-2 me-2"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width={24}
@@ -784,8 +850,8 @@ const DemoComponent = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <div className="h-56 w-full">
+          <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="w-full h-56">
               <a href="#">
                 <img
                   className="mx-auto h-full dark:hidden"
@@ -793,14 +859,14 @@ const DemoComponent = () => {
                   alt=""
                 />
                 <img
-                  className="mx-auto hidden h-full dark:block"
+                  className="hidden mx-auto h-full dark:block"
                   src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
                   alt=""
                 />
               </a>
             </div>
             <div className="pt-6">
-              <div className="mb-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mb-4">
                 <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                   {" "}
                   Up to 35% off{" "}
@@ -811,10 +877,10 @@ const DemoComponent = () => {
                 className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
                 Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
               </a>
-              <div className="mt-2 flex items-center gap-2">
+              <div className="flex gap-2 items-center mt-2">
                 <div className="flex items-center">
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -822,7 +888,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -830,7 +896,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -838,7 +904,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -846,7 +912,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -861,10 +927,10 @@ const DemoComponent = () => {
                   (455)
                 </p>
               </div>
-              <ul className="mt-2 flex items-center gap-4">
-                <li className="flex items-center gap-2">
+              <ul className="flex gap-4 items-center mt-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -881,9 +947,9 @@ const DemoComponent = () => {
                     Fast Delivery
                   </p>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -900,7 +966,7 @@ const DemoComponent = () => {
                   </p>
                 </li>
               </ul>
-              <div className="mt-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mt-4">
                 <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
                   $1,699
                 </p>
@@ -908,7 +974,7 @@ const DemoComponent = () => {
                   type="button"
                   className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                   <svg
-                    className="-ms-2 me-2 h-5 w-5"
+                    className="w-5 h-5 -ms-2 me-2"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width={24}
@@ -928,8 +994,8 @@ const DemoComponent = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <div className="h-56 w-full">
+          <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="w-full h-56">
               <a href="#">
                 <img
                   className="mx-auto h-full dark:hidden"
@@ -937,14 +1003,14 @@ const DemoComponent = () => {
                   alt=""
                 />
                 <img
-                  className="mx-auto hidden h-full dark:block"
+                  className="hidden mx-auto h-full dark:block"
                   src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
                   alt=""
                 />
               </a>
             </div>
             <div className="pt-6">
-              <div className="mb-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mb-4">
                 <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                   {" "}
                   Up to 35% off{" "}
@@ -955,10 +1021,10 @@ const DemoComponent = () => {
                 className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
                 Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
               </a>
-              <div className="mt-2 flex items-center gap-2">
+              <div className="flex gap-2 items-center mt-2">
                 <div className="flex items-center">
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -966,7 +1032,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -974,7 +1040,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -982,7 +1048,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -990,7 +1056,7 @@ const DemoComponent = () => {
                     <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
                   </svg>
                   <svg
-                    className="h-4 w-4 text-yellow-400"
+                    className="w-4 h-4 text-yellow-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -1005,10 +1071,10 @@ const DemoComponent = () => {
                   (455)
                 </p>
               </div>
-              <ul className="mt-2 flex items-center gap-4">
-                <li className="flex items-center gap-2">
+              <ul className="flex gap-4 items-center mt-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -1025,9 +1091,9 @@ const DemoComponent = () => {
                     Fast Delivery
                   </p>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex gap-2 items-center">
                   <svg
-                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -1044,7 +1110,7 @@ const DemoComponent = () => {
                   </p>
                 </li>
               </ul>
-              <div className="mt-4 flex items-center justify-between gap-4">
+              <div className="flex gap-4 justify-between items-center mt-4">
                 <p className="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
                   $1,699
                 </p>
@@ -1052,7 +1118,7 @@ const DemoComponent = () => {
                   type="button"
                   className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                   <svg
-                    className="-ms-2 me-2 h-5 w-5"
+                    className="w-5 h-5 -ms-2 me-2"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     width={24}
@@ -1081,14 +1147,30 @@ const DemoComponent = () => {
 const Home = () => {
   return (
     <>
-      {/* <Header />
+      <Header />
       <HeroSection />
       <ProductLayout />
-      <Footer /> */}
-      <DemoComponent />
+      <Footer />
+      {/* <DemoComponent /> */}
     </>
   );
 };
+
+// Static Function
+const add = () => {
+  return 5;
+};
+
+add(); // 5
+add(); // 5
+
+// Dynamic Function
+const add2 = (a, b) => {
+  return a + b;
+};
+
+add2(2, 2); //4
+add2(5, 5); //10
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Home />);

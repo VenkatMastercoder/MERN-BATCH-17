@@ -1,0 +1,22 @@
+<div className="flex flex-col justify-start items-start gap-4">
+        {/* name */}
+        <input
+          className="border border-green-200"
+          // onChange={(e) => setName(e.target.value)}
+          onChange={(e) =>
+            setComment((prev) => {
+              return { ...prev, name: e.target.value };
+            })
+          }
+        />
+        <textarea
+          className="border border-green-200"
+          // onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) =>
+            setComment((prev) => {
+              return { ...prev, message: e.target.value };
+            })
+          }></textarea>{" "}
+        {/* message */}
+        <button className="bg-red-400 text-white p-2">Submit</button>
+      </div>

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const Counter = () => {
   // Normal Variable
   let value = 10;
@@ -8,6 +10,10 @@ const Counter = () => {
   let [name, setName] = useState("Ram"); // let name = "Ram"
 
   let [cap, setCap] = useState(true); // let cap = true
+
+  useEffect(()=>{
+    console.log("useEffect Called")
+  },[name])
 
   return (
     <>

@@ -11,6 +11,7 @@ import Comment from "./component/Comment";
 import ErrorPage from "./component/ErrorPage";
 import ProductDetails from "./component/ProductDetails";
 import Contact from "./component/Contact";
+import ImageComponent from "./component/ImageComponent";
 
 const Home = () => {
   return (
@@ -63,6 +64,10 @@ const routes = createBrowserRouter([
       {
         path:"/contact",
         element: <Contact/>
+      },
+      {
+        path:"/image",
+        element: <ImageComponent/>
       }
     ],
     errorElement: <ErrorPage />,

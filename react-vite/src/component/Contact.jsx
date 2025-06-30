@@ -1,49 +1,75 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().min(1, { message: "Required" }),
+  email: z.string().email(),
+  message: z.string().min(5, { message: "Required Min 5 Characters" }),
+});
 
 const Contact = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [message, setMessage] = useState();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isDirty, isValid },
+  } = useForm({ resolver: zodResolver(schema) });
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("name:", name);
-    console.log("email:", email);
-    console.log("message:", message);
+  console.log("isValid:", isValid);
+  console.log("isDirty:", isDirty);
+
+  const handleSubmits = (data) => {
+    try {
+      console.log("Form Data:", data);
+      reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  console.log(watch("name"));
 
   return (
     <>
       <p>Contact us Page</p>
 
-      <form>
+      <form onSubmit={handleSubmit(handleSubmits)}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
           className="border border-red-500"
-          onChange={(e) => {
-            setName(e.target.value);  // Re-render the Component
-          }}
+          {...register("name")}
         />
+        {errors.name?.message && (
+          <p className="text-red-400">{errors.name?.message}</p>
+        )}
 
         <label htmlFor="email">Email</label>
         <input
           id="email"
           className="border border-red-500"
-          onChange={(e) => {
-            setEmail(e.target.value); // Re-render the Component
-          }}
+          {...register("email")}
         />
+        {errors.email?.message && (
+          <p className="text-red-400">{errors.email?.message}</p>
+        )}
 
         <label htmlFor="message">Message</label>
         <textarea
           id="message"
           className="border border-red-500"
-          onChange={(e) => {
-            setMessage(e.target.value); // Re-render the Component
-          }}></textarea>
+          {...register("message")}></textarea>
+        {errors.message?.message && (
+          <p className="text-red-400">{errors.message?.message}</p>
+        )}
 
-        <button onClick={handleSubmit}>Submit</button>
+        <button
+          className={!isDirty || !isValid ? "bg-red-500" : "bg-green-500"}
+          disabled={!isDirty || !isValid}>
+          Submit
+        </button>
       </form>
     </>
   );
